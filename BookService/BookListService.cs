@@ -46,15 +46,15 @@ namespace BookService
             _books.Remove(book);
         }
 
-        //public Book FindBookByTag()
-        //{
+        public Book FindBookByTag(BookTags tag, object find)
+        {
+            return _books.Find(tag, find.ToString());
+        }
 
-        //}
-
-        //public void SortBooksByTag()
-        //{
-            
-        //}
+        public void SortBooksByTag(BookTags tag)
+        {
+            _books.Sort(tag);
+        }
 
         public Book[] GetBooks()
         {

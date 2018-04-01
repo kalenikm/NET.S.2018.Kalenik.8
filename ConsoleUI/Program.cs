@@ -22,15 +22,27 @@ namespace ConsoleUI
             {
                 Console.WriteLine(item);
             }
-            var book = service2.GetBooks()[1];
+            Console.WriteLine();
+
+            service2.SortBooksByTag(BookTags.Title);
+            foreach (var item in service2.GetBooks())
+            {
+                Console.WriteLine(item);
+            }
+
+            var book = service2.GetBooks()[2];
             service2.RemoveBook(book);
             Console.WriteLine();
+
             foreach (var item in service2.GetBooks())
             {
                 Console.WriteLine(item);
             }
 
             Console.WriteLine();
+
+            Console.WriteLine(service2.FindBookByTag(BookTags.Title, "Code Complete")?.ToString() ?? "Not found.");
+
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
