@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BankService;
 using BookService;
 
 namespace ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             BookListService service = new BookListService();
             service.AddBook(new Book("978-5-9909805-1-8", "S. McConnell", "Code Complete", "BHV", 2017, 914, 9.50m));
@@ -32,6 +29,40 @@ namespace ConsoleUI
             {
                 Console.WriteLine(item);
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Bank bank = new Bank();
+            bank.NewAccount("Mike", "Smit", "Base");
+            bank.NewAccount("Eric", "Freeman", "Platinum");
+            bank.NewAccount("Berta", "Jhons", "Gold");
+            BankStorage storage = new BankStorage("bank.bin");
+            bank.SaveAccounts(storage);
+
+            bank = new Bank();
+            bank.LoadAccounts(storage);
+            BankAccount account = bank.GetAccount(1);
+            if (account != null)
+            {
+                Console.WriteLine(account);
+                account.Refill(100);
+                Console.WriteLine(account);
+                account.Withdraw(20);
+                Console.WriteLine(account);
+            }
+            account = bank.GetAccount(2);
+            if (account != null)
+            {
+                Console.WriteLine(account);
+                account.Refill(500);
+                Console.WriteLine(account);
+                account.Withdraw(300);
+                Console.WriteLine(account);
+            }
+
         }
     }
 }
