@@ -12,6 +12,11 @@ namespace BankService
     public class BankStorage : IBankStorage
     {
         private readonly string _filename;
+
+        /// <summary>
+        /// Creates new storage.
+        /// </summary>
+        /// <param name="filename">Filename of file to storage.</param>
         public BankStorage(string filename)
         {
             if (filename == null)
@@ -20,6 +25,10 @@ namespace BankService
             _filename = filename;
         }
 
+        /// <summary>
+        /// Loads bank accounts info from file.
+        /// </summary>
+        /// <returns>List of bank accounts.</returns>
         public List<BankAccount> Load()
         {
             if (!new FileInfo(_filename).Exists)
@@ -37,6 +46,10 @@ namespace BankService
             return accounts;
         }
 
+        /// <summary>
+        /// Saves bank accounts to file.
+        /// </summary>
+        /// <param name="accounts">Collection of bank accounts.</param>
         public void Save(IEnumerable<BankAccount> accounts)
         {
             using (var bw = new BinaryWriter(new FileStream(_filename, FileMode.Create)))

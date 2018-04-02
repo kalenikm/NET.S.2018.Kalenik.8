@@ -53,11 +53,21 @@ namespace BankService
 
         #endregion
 
+        #region ObjectMethods
+
         public override string ToString()
         {
             return $"{FirstName} {LastName}, Money: {Money:C}, Bonus: {Bonus}, Type: {Type}.";
         }
 
+        #endregion
+
+        /// <summary>
+        /// Creates new bank account.
+        /// </summary>
+        /// <param name="firstName">First name of person.</param>
+        /// <param name="lastName">Last name of person.</param>
+        /// <param name="type">Type of bank account.</param>
         public BankAccount(string firstName, string lastName, string type)
         {
             Id = ++_globalId;
@@ -79,6 +89,10 @@ namespace BankService
             _type = TypesFactory.GetType(type);
         }
 
+        /// <summary>
+        /// Withdraws money from bank account.
+        /// </summary>
+        /// <param name="x">Money to withdraw.</param>
         public void Withdraw(decimal x)
         {
             if(x > _money)
@@ -90,6 +104,10 @@ namespace BankService
             _bonus += _type.BonusForWithdraw(x);
         }
 
+        /// <summary>
+        /// Refill a bank account.
+        /// </summary>
+        /// <param name="x">Money to refill.</param>
         public void Refill(decimal x)
         {
             if (x <= 0)
