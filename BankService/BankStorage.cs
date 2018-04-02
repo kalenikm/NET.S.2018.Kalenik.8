@@ -19,8 +19,8 @@ namespace BankService
         /// <param name="filename">Filename of file to storage.</param>
         public BankStorage(string filename)
         {
-            if (filename == null)
-                throw new ArgumentNullException();
+            if (ReferenceEquals(null, filename))
+                throw new ArgumentNullException($"{nameof(filename)} is null.");
 
             _filename = filename;
         }

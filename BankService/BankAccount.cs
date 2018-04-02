@@ -27,7 +27,7 @@ namespace BankService
             get { return _firstName; }
             private set
             {
-                if(value == null)
+                if(ReferenceEquals(null, value))
                     throw new ArgumentNullException($"{nameof(value)} is null.");
 
                 _firstName = value;
@@ -39,7 +39,7 @@ namespace BankService
             get { return _lastName; }
             private set
             {
-                if (value == null)
+                if (ReferenceEquals(null, value))
                     throw new ArgumentNullException($"{nameof(value)} is null.");
 
                 _lastName = value;
@@ -76,7 +76,7 @@ namespace BankService
             _type = TypesFactory.GetType(type);
         }
 
-        public BankAccount(int id, string firstName, string lastName, decimal money, int bonus, string type)
+        internal BankAccount(int id, string firstName, string lastName, decimal money, int bonus, string type)
         {
             if (_globalId.Equals(id))
                 _globalId++;

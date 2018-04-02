@@ -21,8 +21,8 @@ namespace BankService
         /// <param name="storage">Storage to load from.</param>
         public void LoadAccounts(IBankStorage storage)
         {
-            if(storage == null)
-                throw new ArgumentNullException();
+            if (ReferenceEquals(null, storage))
+                throw new ArgumentNullException($"{nameof(storage)} is null.");
 
             _bankAccounts = storage.Load();
         }
@@ -33,8 +33,8 @@ namespace BankService
         /// <param name="storage">Storage to save in.</param>
         public void SaveAccounts(IBankStorage storage)
         {
-            if (storage == null)
-                throw new ArgumentNullException();
+            if (ReferenceEquals(null, storage))
+                throw new ArgumentNullException($"{nameof(storage)} is null.");
 
             storage.Save(_bankAccounts);
         }
@@ -42,12 +42,13 @@ namespace BankService
         /// <summary>
         /// Creates new bank account.
         /// </summary>
-        /// <param name="firstName">First name of person.</param>
-        /// <param name="lastName">Last name of person.</param>
-        /// <param name="type">Type of bank account.</param>
-        public void NewAccount(string firstName, string lastName, string type)
+        /// <param name="account"></param>
+        public void NewAccount(BankAccount account)
         {
-            _bankAccounts.Add(new BankAccount(firstName, lastName, type));
+            if (ReferenceEquals(null, account))
+                throw new ArgumentNullException($"{nameof(account)} is null.");
+
+            _bankAccounts.Add(account);
         }
 
         /// <summary>
@@ -56,8 +57,8 @@ namespace BankService
         /// <param name="account">Bank account to remove.</param>
         public void DeleteAccount(BankAccount account)
         {
-            if(account == null)
-                throw new ArgumentNullException();
+            if (ReferenceEquals(null, account))
+                throw new ArgumentNullException($"{nameof(account)} is null.");
 
             _bankAccounts.Remove(account);
         }
