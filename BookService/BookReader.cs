@@ -7,11 +7,19 @@ namespace BookService
     {
         private readonly Stream _stream;
 
+        /// <summary>
+        /// Creates new BookReader.
+        /// </summary>
+        /// <param name="stream">Stream to read from.</param>
         public BookReader(Stream stream)
         {
             _stream = stream;
         }
 
+        /// <summary>
+        /// Reads fields of book from stream.
+        /// </summary>
+        /// <returns>Returns book from stream.</returns>
         public Book Read()
         {
             Book book = null;
@@ -24,6 +32,10 @@ namespace BookService
             return book;
         }
 
+        /// <summary>
+        /// Checks end of stream.
+        /// </summary>
+        /// <returns></returns>
         public bool IsEnd()
         {
             return !(_stream.Length > _stream.Position);

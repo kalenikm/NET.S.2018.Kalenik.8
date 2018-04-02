@@ -13,11 +13,19 @@ namespace BookService
     {
         private readonly string _filename;
 
+        /// <summary>
+        /// Creates new storage.
+        /// </summary>
+        /// <param name="filename">File for storage.</param>
         public BookListStorage(string filename)
         {
             _filename = filename;
         }
 
+        /// <summary>
+        /// Saves <paramref name="books"/> to file.
+        /// </summary>
+        /// <param name="books">Collection of books to save.</param>
         public void Save(IEnumerable<Book> books)
         {
             if(books == null)
@@ -32,6 +40,10 @@ namespace BookService
             }
         }
 
+        /// <summary>
+        /// Loads books from file.
+        /// </summary>
+        /// <returns>Returns collection of books.</returns>
         public List<Book> Load()
         {
             List<Book> books = new List<Book>();

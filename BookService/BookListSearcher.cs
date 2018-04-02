@@ -6,6 +6,30 @@ namespace BookService
 {
     public static class BookListSearcher
     {
+
+        /// <summary>
+        /// Checks same <paramref name="book"/> in list <paramref name="books"/>
+        /// </summary>
+        /// <param name="books">List of books.</param>
+        /// <param name="book">Book to find.</param>
+        /// <returns></returns>
+        public static bool CheckBook(this List<Book> books, Book book)
+        {
+            foreach (Book b in books)
+            {
+                if (b.Equals(book))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Finds book in list of books by tag.
+        /// </summary>
+        /// <param name="books">List of books.</param>
+        /// <param name="tag">Tag to find by.</param>
+        /// <param name="find">Value of tag.</param>
+        /// <returns>Returns found book.</returns>
         public static Book Find(this List<Book> books, BookTags tag, string find)
         {
             switch (tag)
@@ -27,7 +51,7 @@ namespace BookService
             }
         }
 
-        public static Book FindByTitle(this List<Book> books, string find)
+        private static Book FindByTitle(this List<Book> books, string find)
         {
             foreach (var book in books)
             {
@@ -37,7 +61,7 @@ namespace BookService
             return null;
         }
 
-        public static Book FindByAuthor(this List<Book> books, string find)
+        private static Book FindByAuthor(this List<Book> books, string find)
         {
             foreach (var book in books)
             {
@@ -47,7 +71,7 @@ namespace BookService
             return null;
         }
 
-        public static Book FindByYear(this List<Book> books, string find)
+        private static Book FindByYear(this List<Book> books, string find)
         {
             foreach (var book in books)
             {
@@ -57,7 +81,7 @@ namespace BookService
             return null;
         }
 
-        public static Book FindByPublisher(this List<Book> books, string find)
+        private static Book FindByPublisher(this List<Book> books, string find)
         {
             foreach (var book in books)
             {
@@ -67,7 +91,7 @@ namespace BookService
             return null;
         }
 
-        public static Book FindByPages(this List<Book> books, string find)
+        private static Book FindByPages(this List<Book> books, string find)
         {
             foreach (var book in books)
             {
@@ -77,7 +101,7 @@ namespace BookService
             return null;
         }
 
-        public static Book FindByPrice(this List<Book> books, string find)
+        private static Book FindByPrice(this List<Book> books, string find)
         {
             foreach (var book in books)
             {

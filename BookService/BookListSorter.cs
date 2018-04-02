@@ -14,6 +14,11 @@ namespace BookService
     }
     public static class BookListSorter
     {
+        /// <summary>
+        /// Sorts list of books by tag.
+        /// </summary>
+        /// <param name="books">List of books to sort.</param>
+        /// <param name="tag">Tag to sort by.</param>
         public static void Sort(this List<Book> books, BookTags tag)
         {
             switch (tag)
@@ -48,7 +53,7 @@ namespace BookService
             list[b] = buff;
         }
 
-        public static void SortByTitle(this List<Book> books)
+        private static void SortByTitle(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)
@@ -56,7 +61,7 @@ namespace BookService
                     Swap(books, j, j + 1);
         }
 
-        public static void SortByAuthor(this List<Book> books)
+        private static void SortByAuthor(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)
@@ -64,7 +69,7 @@ namespace BookService
                     Swap(books, j, j + 1);
         }
 
-        public static void SortByYear(this List<Book> books)
+        private static void SortByYear(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)
@@ -72,7 +77,7 @@ namespace BookService
                     Swap(books, j, j + 1);
         }
 
-        public static void SortByPublisher(this List<Book> books)
+        private static void SortByPublisher(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)
@@ -80,7 +85,7 @@ namespace BookService
                     Swap(books, j, j + 1);
         }
 
-        public static void SortByPages(this List<Book> books)
+        private static void SortByPages(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)
@@ -88,7 +93,7 @@ namespace BookService
                     Swap(books, j, j + 1);
         }
 
-        public static void SortByPrice(this List<Book> books)
+        private static void SortByPrice(this List<Book> books)
         {
             for (var i = 0; i < books.Count; i++)
             for (var j = 0; j < books.Count - i - 1; j++)

@@ -7,11 +7,19 @@ namespace BookService
     {
         private readonly Stream _stream;
 
+        /// <summary>
+        /// Creates new BookWriter.
+        /// </summary>
+        /// <param name="stream">Stream to write in.</param>
         public BookWriter(Stream stream)
         {
             _stream = stream;
         }
 
+        /// <summary>
+        /// Writes fields of book in stream.
+        /// </summary>
+        /// <param name="book">Book to write in.</param>
         public void Write(Book book)
         {
             if (book == null)

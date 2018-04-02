@@ -99,12 +99,14 @@ namespace BookService
         }
 
         #endregion
-        
+
+        #region Interfaces
+
         public int CompareTo(object obj)
         {
             Book book = obj as Book;
 
-            if(ReferenceEquals(book, null))
+            if (ReferenceEquals(book, null))
                 throw new ArgumentException($"{nameof(obj)} is not a Book.");
 
             return Compare(book.Title, Title, StringComparison.Ordinal);
@@ -141,6 +143,18 @@ namespace BookService
             return true;
         }
 
+        #endregion
+
+        /// <summary>
+        /// Creates new book.
+        /// </summary>
+        /// <param name="isbn">ISBN of book.</param>
+        /// <param name="author">Book author.</param>
+        /// <param name="title">Book title.</param>
+        /// <param name="publisher">Book publisher.</param>
+        /// <param name="year">Year of issue.</param>
+        /// <param name="pages">Number of pages.</param>
+        /// <param name="price">Book price.</param>
         public Book(string isbn, string author, string title, string publisher, int year, int pages, decimal price)
         {
             Isbn = isbn;
@@ -164,7 +178,7 @@ namespace BookService
             return year > 1900 && year <= DateTime.Now.Year;
         }
 
-        public bool IsValidString(string str)
+        private bool IsValidString(string str)
         {
             return !ReferenceEquals(null, str) && str.Length != 0;
         }
@@ -175,7 +189,7 @@ namespace BookService
 
         public override string ToString()
         {
-            return $"{Isbn} \"{Title}\" {Author}, {Publisher}, {Year}, {Pages} pages, {Price:C}";
+            return $"{Isbn} \"{Title}\" {Author}, Publisher: {Publisher}, {Year}, {Pages} pages, {Price:C}";
         }
 
         public override int GetHashCode()
