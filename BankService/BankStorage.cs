@@ -7,8 +7,10 @@ namespace BankService
     public interface IBankStorage
     {
         List<BankAccount> Load();
+
         void Save(IEnumerable<BankAccount> accounts);
     }
+
     public class BankStorage : IBankStorage
     {
         private readonly string _filename;
@@ -20,7 +22,9 @@ namespace BankService
         public BankStorage(string filename)
         {
             if (ReferenceEquals(null, filename))
+            {
                 throw new ArgumentNullException($"{nameof(filename)} is null.");
+            }
 
             _filename = filename;
         }
@@ -32,7 +36,9 @@ namespace BankService
         public List<BankAccount> Load()
         {
             if (!new FileInfo(_filename).Exists)
+            {
                 throw new ArgumentException();
+            }
 
             var accounts = new List<BankAccount>();
 
@@ -43,6 +49,7 @@ namespace BankService
                     accounts.Add(new BankAccount(br.ReadInt32(), br.ReadString(), br.ReadString(), br.ReadDecimal(), br.ReadInt32(), br.ReadString()));
                 }
             }
+
             return accounts;
         }
 

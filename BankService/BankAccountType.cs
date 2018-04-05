@@ -1,10 +1,47 @@
-﻿namespace BankService
+﻿using System;
+
+namespace BankService
 {
     public abstract class BankAccountType
     {
-        protected int Bonus;
-        protected decimal Coef;
-        protected string Title;
+        private decimal _coefficient;
+        private string _title;
+
+        protected decimal Сoefficient
+        {
+            get
+            {
+                return _coefficient;
+            }
+
+            set
+            {
+                if (_coefficient < 0)
+                {
+                    throw new ArgumentException(nameof(value));
+                }
+
+                _coefficient = value;
+            }
+        }
+
+        protected string Title
+        {
+            get
+            {
+                return _title;
+            }
+
+            set
+            {
+                if (ReferenceEquals(null, value))
+                {
+                    throw new ArgumentNullException(nameof(value));
+                }
+
+                _title = value;
+            }
+        }
 
         /// <summary>
         /// Considers bonus for withdraw.

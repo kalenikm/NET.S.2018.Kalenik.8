@@ -5,62 +5,18 @@ namespace BankService
     public interface IBankAccount
     {
         void Withdraw(decimal x);
+
         void Refill(decimal x);
     }
 
     public class BankAccount : IBankAccount
     {
         private static int _globalId;
+        private readonly BankAccountType _type;
         private string _firstName;
         private string _lastName;
         private decimal _money;
         private int _bonus;
-
-        private readonly BankAccountType _type;
-
-        #region Properties
-
-        public int Id { get; }
-
-        public string FirstName
-        {
-            get { return _firstName; }
-            private set
-            {
-                if(ReferenceEquals(null, value))
-                    throw new ArgumentNullException($"{nameof(value)} is null.");
-
-                _firstName = value;
-            }
-        }
-
-        public string LastName
-        {
-            get { return _lastName; }
-            private set
-            {
-                if (ReferenceEquals(null, value))
-                    throw new ArgumentNullException($"{nameof(value)} is null.");
-
-                _lastName = value;
-            }
-        }
-
-        public decimal Money => _money;
-        public int Bonus => _bonus;
-
-        public string Type => _type.GetName();
-
-        #endregion
-
-        #region ObjectMethods
-
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}, Money: {Money:C}, Bonus: {Bonus}, Type: {Type}.";
-        }
-
-        #endregion
 
         /// <summary>
         /// Creates new bank account.
@@ -79,7 +35,9 @@ namespace BankService
         internal BankAccount(int id, string firstName, string lastName, decimal money, int bonus, string type)
         {
             if (_globalId.Equals(id))
+            {
                 _globalId++;
+            }
 
             Id = id;
             FirstName = firstName;
@@ -89,16 +47,78 @@ namespace BankService
             _type = TypesFactory.GetType(type);
         }
 
+        #region Properties
+
+        public int Id { get; }
+
+        public string FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+
+            private set
+            {
+                if (ReferenceEquals(null, value))
+                {
+                    throw new ArgumentNullException($"{nameof(value)} is null.");
+                }
+
+                _firstName = value;
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return _lastName;
+            }
+
+            private set
+            {
+                if (ReferenceEquals(null, value))
+                {
+                    throw new ArgumentNullException($"{nameof(value)} is null.");
+                }
+
+                _lastName = value;
+            }
+        }
+
+        public decimal Money => _money;
+
+        public int Bonus => _bonus;
+
+        public string Type => _type.GetName();
+
+        #endregion
+
+        #region ObjectMethods
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}, Money: {Money:C}, Bonus: {Bonus}, Type: {Type}.";
+        }
+
+        #endregion
+
         /// <summary>
         /// Withdraws money from bank account.
         /// </summary>
         /// <param name="x">Money to withdraw.</param>
         public void Withdraw(decimal x)
         {
-            if(x > _money)
+            if (x > _money)
+            {
                 throw new ArgumentException("Not enough money.");
-            if(x <= 0)
+            }
+
+            if (x <= 0)
+            {
                 throw new ArgumentException();
+            }
 
             _money -= x;
             _bonus += _type.BonusForWithdraw(x);
@@ -111,7 +131,9 @@ namespace BankService
         public void Refill(decimal x)
         {
             if (x <= 0)
+            {
                 throw new ArgumentException();
+            }
 
             _money += x;
             _bonus += _type.BonusForRefill(x);

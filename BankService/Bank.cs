@@ -22,8 +22,10 @@ namespace BankService
         public void LoadAccounts(IBankStorage storage)
         {
             if (ReferenceEquals(null, storage))
+            {
                 throw new ArgumentNullException($"{nameof(storage)} is null.");
-
+            }
+                
             _bankAccounts = storage.Load();
         }
 
@@ -34,7 +36,9 @@ namespace BankService
         public void SaveAccounts(IBankStorage storage)
         {
             if (ReferenceEquals(null, storage))
+            {
                 throw new ArgumentNullException($"{nameof(storage)} is null.");
+            }
 
             storage.Save(_bankAccounts);
         }
@@ -46,7 +50,9 @@ namespace BankService
         public void NewAccount(BankAccount account)
         {
             if (ReferenceEquals(null, account))
+            {
                 throw new ArgumentNullException($"{nameof(account)} is null.");
+            }
 
             _bankAccounts.Add(account);
         }
@@ -58,7 +64,9 @@ namespace BankService
         public void DeleteAccount(BankAccount account)
         {
             if (ReferenceEquals(null, account))
+            {
                 throw new ArgumentNullException($"{nameof(account)} is null.");
+            }
 
             _bankAccounts.Remove(account);
         }
@@ -73,8 +81,11 @@ namespace BankService
             foreach (var acc in _bankAccounts)
             {
                 if (acc.Id.Equals(id))
+                {
                     return acc;
+                }
             }
+
             return null;
         }
     }

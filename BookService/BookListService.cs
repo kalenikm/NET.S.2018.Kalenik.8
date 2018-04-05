@@ -68,8 +68,8 @@ namespace BookService
             if(book == null)
                 throw new ArgumentNullException($"{nameof(book)} is null.");
 
-            if (_books.CheckBook(book))
-                throw new ArgumentException($"This book {nameof(book)} is not found.");
+            if (!_books.CheckBook(book))
+                throw new ArgumentException($"This book is not found.");
 
             _books.Remove(book);
         }

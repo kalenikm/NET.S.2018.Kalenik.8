@@ -14,6 +14,8 @@ namespace ConsoleUI
             service.AddBook(new Book("978-5-459-00435-9", "E. Freeman", "Head First Design Patterns", "O'Reilly Media", 2009, 688, 23.99m));
             service.SaveBooks(new BookListStorage("books.bin"));
 
+            Console.WriteLine(service.GetBooks()[0].ToString("atn"));
+
             BookListService service2 = new BookListService();
             Console.WriteLine(service2.Count);
             service2.LoadBooks(new BookListStorage("books.bin"));
@@ -48,9 +50,13 @@ namespace ConsoleUI
             Console.WriteLine();
 
             Bank bank = new Bank();
-            bank.NewAccount("Mike", "Smit", "Base");
-            bank.NewAccount("Eric", "Freeman", "Platinum");
-            bank.NewAccount("Berta", "Jhons", "Gold");
+            BankAccount baccount = new BankAccount("Mike", "Smit", "Base");
+            bank.NewAccount(baccount);
+            baccount = new BankAccount("Eric", "Freeman", "Platinum");
+            bank.NewAccount(baccount);
+            baccount = new BankAccount("Berta", "Jhons", "Gold");
+            bank.NewAccount(baccount);
+
             BankStorage storage = new BankStorage("bank.bin");
             bank.SaveAccounts(storage);
 
