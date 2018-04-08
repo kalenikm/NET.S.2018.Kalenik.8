@@ -208,7 +208,7 @@ namespace BookService
 
         public string ToString(string format, IFormatProvider provider)
         {
-            if (String.IsNullOrEmpty(format)) format = "G";
+            if (String.IsNullOrEmpty(format)) return ToString();
             if (provider == null) provider = CultureInfo.CurrentCulture;
             if (format.Length > 7) throw new ArgumentException();
 
@@ -223,28 +223,26 @@ namespace BookService
             {
                 switch (format[i])
                 {
-                    case 'G':
-                        return ToString();
                     case 'I':
-                        result += String.Format($"ISBN 13: {isbn.ToString(provider)}");
+                        result += String.Format(provider, "ISBN 13: {0:I}", isbn);
                         break;
                     case 'A':
-                        result += author.ToString(provider);
+                        result += String.Format(provider, "{0:A}", author);
                         break;
                     case 'T':
-                        result += title.ToString(provider);
+                        result += String.Format(provider, "{0:T}", title);
                         break;
                     case 'P':
-                        result += String.Format($"\"{publisher.ToString(provider)}\"");
+                        result += String.Format(provider, "\"{0:P}\"", publisher);
                         break;
                     case 'Y':
-                        result += year.ToString(provider);
+                        result += String.Format(provider, "{0:Y}", year);
                         break;
                     case 'N':
-                        result += String.Format($"P. {pages.ToString(provider)}");
+                        result += String.Format(provider, "P. {0:N}", pages);
                         break;
                     case 'C':
-                        result += String.Format($"{price:C}", provider);
+                        result += String.Format(provider, "{0:C}", price);
                         break;
                     default:
                         throw new ArgumentException("Invalid format.");
