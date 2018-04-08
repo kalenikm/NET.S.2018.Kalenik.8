@@ -18,6 +18,14 @@ namespace BookService.Tests
             return book.ToString(format);
         }
 
+        [TestCase("atp", ExpectedResult = "Author: Jeffrey Richter, Title: CLR via C#, Publisher: \"Microsoft Press\"")]
+        [TestCase("ipyc", ExpectedResult = "ISBN 13: 978-0-7356-6745-7, Publisher: \"Microsoft Press\", 2012, Price: 59,99 р.")]
+        [TestCase("atn", ExpectedResult = "Author: Jeffrey Richter, Title: CLR via C#, P. 826")]
+        public string Book_ToString_CustomProvider(string format)
+        {
+            return book.ToString(format, new BookProvider());
+        }
+
         [TestCase("atap")]
         [TestCase("iipyc")]
         [TestCase("catn")]

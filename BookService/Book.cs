@@ -233,16 +233,16 @@ namespace BookService
                         result += String.Format(provider, "{0:T}", title);
                         break;
                     case 'P':
-                        result += String.Format(provider, "\"{0:P}\"", publisher);
+                        result += String.Format(provider, "{0:P}", "\"" + publisher + "\"");
                         break;
                     case 'Y':
-                        result += String.Format(provider, "{0:Y}", year);
+                        result += String.Format(provider, "{0:Y}", year.ToString("####"));
                         break;
                     case 'N':
-                        result += String.Format(provider, "P. {0:N}", pages);
+                        result += String.Format(provider, "P. {0:N}", pages.ToString("##"));
                         break;
                     case 'C':
-                        result += String.Format(provider, "{0:C}", price);
+                        result += String.Format(provider, "{0:C}", price.ToString("C"));
                         break;
                     default:
                         throw new ArgumentException("Invalid format.");
