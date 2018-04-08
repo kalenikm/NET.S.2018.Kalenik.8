@@ -15,6 +15,7 @@ namespace ConsoleUI
             service.SaveBooks(new BookListStorage("books.bin"));
 
             Console.WriteLine(service.GetBooks()[0].ToString("atn"));
+            Console.WriteLine(service.GetBooks()[0].ToString("atn", new BookProvider()));
 
             BookListService service2 = new BookListService();
             Console.WriteLine(service2.Count);

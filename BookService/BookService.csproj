@@ -45,6 +45,7 @@
     <Compile Include="BookListService.cs" />
     <Compile Include="BookListSorter.cs" />
     <Compile Include="BookListStorage.cs" />
+    <Compile Include="BookProvider.cs" />
     <Compile Include="BookReader.cs" />
     <Compile Include="BookWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
