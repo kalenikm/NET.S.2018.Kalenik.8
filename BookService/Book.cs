@@ -206,6 +206,12 @@ namespace BookService
             return this.ToString(format, CultureInfo.CurrentCulture);
         }
 
+        /// <summary>
+        /// Returns a string that represents this object.
+        /// </summary>
+        /// <param name="format">Format to represent object by. Use characters to show information separately.</param>
+        /// <param name="provider">Provider to use to format result.</param>
+        /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
             if (String.IsNullOrEmpty(format)) return ToString();
