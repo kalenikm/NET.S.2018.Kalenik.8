@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BookService.BookAdapters;
+using BookService.Interfaces;
 
 namespace BookService
 {
-    public interface IBookListStorage
-    {
-        void Save(IEnumerable<Book> books);
-        List<Book> Load();
-    }
     public class BookListStorage : IBookListStorage
     {
         private readonly string _filename;

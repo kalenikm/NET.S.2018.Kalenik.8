@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookService
+namespace BookService.Format
 {
     public class BookProvider : ICustomFormatter, IFormatProvider
     {

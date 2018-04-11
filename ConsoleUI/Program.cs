@@ -1,6 +1,8 @@
 ﻿using System;
 using BankService;
 using BookService;
+using BookService.Format;
+using NLog;
 
 namespace ConsoleUI
 {
@@ -8,7 +10,7 @@ namespace ConsoleUI
     {
         static void Main()
         {
-            BookListService service = new BookListService();
+            BookListService service = new BookListService(LogManager.GetCurrentClassLogger());
             service.AddBook(new Book("978-5-9909805-1-8", "S. McConnell", "Code Complete", "BHV", 2017, 914, 9.50m));
             service.AddBook(new Book("978-5-496-01649-0", "C. Тепляков", "Паттерны проектирования на платформе .NET", "ПИТЕР", 2015, 320, 12.70m));
             service.AddBook(new Book("978-5-459-00435-9", "E. Freeman", "Head First Design Patterns", "O'Reilly Media", 2009, 688, 23.99m));
