@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BookService.Interfaces;
-using NLog;
+using BookService.Logger;
 
 namespace BookService
 {
@@ -20,7 +20,7 @@ namespace BookService
         /// </summary>
         public BookListService()
         {
-            _logger = LogManager.GetCurrentClassLogger();
+            _logger = null;
             _books = new List<Book>();
         }
 
@@ -51,18 +51,18 @@ namespace BookService
         /// <param name="storage"></param>
         public void SaveBooks(IBookListStorage storage)
         {
-            _logger.Trace("Method SaveBook start.");
+            _logger?.Trace("Method SaveBook start.");
 
             if (storage == null)
             {
-                _logger.Info("ArgumentNullException");
+                _logger?.Info("ArgumentNullException");
                 throw new ArgumentNullException($"{nameof(storage)} is null.");
             }
                 
 
             storage.Save(_books);
 
-            _logger.Trace("Method SaveBook end.");
+            _logger?.Trace("Method SaveBook end.");
         }
 
         /// <summary>
@@ -71,25 +71,25 @@ namespace BookService
         /// <param name="book">Book to add.</param>
         public void AddBook(Book book)
         {
-            _logger.Trace("Method AddBook start.");
+            _logger?.Trace("Method AddBook start.");
 
             if (book == null)
             {
-                _logger.Info("ArgumentNullException");
+                _logger?.Info("ArgumentNullException");
                 throw new ArgumentNullException($"{nameof(book)} is null.");
             }
 
 
             if (_books.CheckBook(book))
             {
-                _logger.Info("ArgumentException");
+                _logger?.Info("ArgumentException");
                 throw new ArgumentException($"This book {nameof(book)} is already exist.");
             }
                 
 
             _books.Add(book);
 
-            _logger.Trace("Method AddBook end.");
+            _logger?.Trace("Method AddBook end.");
         }
 
         /// <summary>
@@ -98,24 +98,24 @@ namespace BookService
         /// <param name="book">Book to remove.</param>
         public void RemoveBook(Book book)
         {
-            _logger.Trace("Method RemoveBook start.");
+            _logger?.Trace("Method RemoveBook start.");
 
             if (book == null)
             {
-                _logger.Info("ArgumentNullException");
+                _logger?.Info("ArgumentNullException");
                 throw new ArgumentNullException($"{nameof(book)} is null.");
             }
 
             if (!_books.CheckBook(book))
             {
-                _logger.Info("ArgumentException");
+                _logger?.Info("ArgumentException");
                 throw new ArgumentException($"This book is not found.");
             }
                 
 
             _books.Remove(book);
 
-            _logger.Trace("Method RemoveBook end.");
+            _logger?.Trace("Method RemoveBook end.");
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace BookService
         /// <returns>Found book or null.</returns>
         public Book FindBookByTag(BookTags tag, object find)
         {
-            _logger.Trace("Method FindBookByTag start.");
+            _logger?.Trace("Method FindBookByTag start.");
 
-            _logger.Trace("Method FindBookByTag end.");
+            _logger?.Trace("Method FindBookByTag end.");
 
             return _books.Find(tag, find.ToString());
         }
@@ -139,9 +139,9 @@ namespace BookService
         /// <param name="tag">Tag to sort by.</param>
         public void SortBooksByTag(BookTags tag)
         {
-            _logger.Trace("Method SortBooksByTag start.");
+            _logger?.Trace("Method SortBooksByTag start.");
 
-            _logger.Trace("Method SortBooksByTag end.");
+            _logger?.Trace("Method SortBooksByTag end.");
 
             _books.Sort(tag);
         }
@@ -152,12 +152,12 @@ namespace BookService
         /// <returns>Array of book.</returns>
         public Book[] GetBooks()
         {
-            _logger.Trace("Method GetBooks start.");
+            _logger?.Trace("Method GetBooks start.");
 
             Book[] books = new Book[Count];
             _books.CopyTo(books);
 
-            _logger.Trace("Method GetBooks end.");
+            _logger?.Trace("Method GetBooks end.");
 
             return books;
         }

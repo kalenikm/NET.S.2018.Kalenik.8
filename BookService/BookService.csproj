@@ -59,7 +59,7 @@
     <Compile Include="BookAdapters\BookWriter.cs" />
     <Compile Include="Interfaces\IBookListStorage.cs" />
     <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Logger\NLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
